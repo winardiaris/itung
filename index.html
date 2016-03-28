@@ -1,0 +1,97 @@
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta name="description" content="Itung">
+	<meta name="author" content="winardiaris">
+
+	<title>Itung</title>
+	<link href="static/bootstrap/css/bootstrap.css" rel="stylesheet">
+	
+	<script src="static/js/jquery-1.11.3.min.js"></script>
+	<script src="static/js/clipboard.min.js"></script>
+	<script src="static/js/notify.min.js"></script>
+	<script src="static/bootstrap/js/bootstrap.min.js"></script>
+	<style>
+		body{
+			background:#BDCFEB !important;
+		}
+		section{
+			height:100%;
+			padding:30px;
+			position:relative;
+			top:0;
+		}
+	</style>
+</head>
+<body>
+	<div id="container">
+	    <div class="col-md-8 col-md-offset-2">
+				<!-- Section1 -->
+				<section id="section1">
+					<h1>Itung</h1>
+					<p>Itung adalah aplikasi untuk mengitung kata dan karakter dalam paragrap</p>
+					<label>Masukan Teks</label>
+					<textarea class="form-control" rows="15" id="masukan"></textarea>
+					<br>
+					<div class="btn-group">
+						<button id="itung" class="btn btn-primary"><i class="glyphicon glyphicon-ok"></i> Itung </button>
+						<button id="salin" class="btn btn-success" data-clipboard-target="#masukan"><i class="glyphicon glyphicon-list-alt"></i> Salin </button>
+						<button id="hapus" class="btn btn-danger"><i class="glyphicon glyphicon-remove"></i> Hapus </button>
+					</div>
+				</section>
+				<!-- Section2 -->
+			</div>
+	</div>
+	<script>
+		$(document).ready(function(){
+			function salin(element){
+				var temp = $("<input>");
+			  $("body").append(temp);
+			  temp.val($(element).text()).select();
+			  document.execCommand("copy");
+			  temp.remove();
+			}
+			
+			masukan = $("#masukan");
+		
+			$("#itung").click(function(){
+					var str = $(masukan).val();
+					$.get("itung.php?str="+str, function( data ) {
+						var jsonObj = JSON.parse(data);
+						var jsonPretty = JSON.stringify(jsonObj, null, '\t');		
+						$(masukan).val(jsonPretty);
+					});
+			});
+		
+			$("#hapus").click(function(){
+					$(masukan).val("");
+					$(masukan).focus();
+			});
+			
+			var clipboard = new Clipboard('#salin');
+
+			clipboard.on('success', function(e) {
+			    console.info('Action:', e.action);
+			    //~ console.info('Text:', e.text);
+			    //~ console.info('Trigger:', e.trigger);
+			    $("#salin").notify(
+  "Coppied to clipboard", 
+  { position:"right",
+		className:"success"}
+);
+			
+			    e.clearSelection();
+			});
+			
+			clipboard.on('error', function(e) {
+			    console.error('Action:', e.action);
+			    console.error('Trigger:', e.trigger);
+			});
+			
+		});
+	</script>
+	
+</body>
+</html>
