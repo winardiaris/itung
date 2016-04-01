@@ -1,0 +1,21 @@
+[
+	{
+		"jumlah_kata": 2
+	},
+	{
+		"hitung_kata": {
+			"ars": 2
+		}
+	},
+	{
+		"jumlah_karakter": 7
+	},
+	{
+		"hitung_karakter": {
+			"s": 2,
+			"r": 2,
+			"a": 2,
+			" ": 1
+		}
+	}
+]

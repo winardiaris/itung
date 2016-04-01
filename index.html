@@ -58,13 +58,11 @@
 
 			$("#itung").click(function(){
 					var str = $(masukan).val();
-					a = "";
 					$.get("itung.php?str="+str, function( data ) {
 						var jsonObj = JSON.parse(data);
 						var jsonPretty = JSON.stringify(jsonObj, null, '\t');
 						$(masukan).val(jsonPretty);
-						a=jsonPretty;
-
+						$(masukan).prop( "disabled", true );
 						$.ajax({
 							type: "POST",
 							cache: false,
@@ -79,16 +77,11 @@
 									console.log("error");
 							}
 						});
-
 					});
-
-
-
-
-
 			});
 
 			$("#hapus").click(function(){
+					$(masukan).prop( "disabled", false );	
 					$(masukan).val("");
 					$(masukan).focus();
 					$("#unduh").remove();

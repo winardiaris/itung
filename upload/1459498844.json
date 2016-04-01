@@ -1,0 +1,22 @@
+[
+	{
+		"jumlah_kata": 2
+	},
+	{
+		"hitung_kata": {
+			"arsarsars": 1,
+			"ars": 1
+		}
+	},
+	{
+		"jumlah_karakter": 13
+	},
+	{
+		"hitung_karakter": {
+			"s": 4,
+			"r": 4,
+			"a": 4,
+			" ": 1
+		}
+	}
+]
