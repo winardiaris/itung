@@ -43,7 +43,7 @@ function UbahXXX($str){
 
 	$str = preg_replace($search,$replace,$str);
 	return $str;
-	
+
 }
 
 function __hilang_simbol($str){
@@ -76,7 +76,7 @@ function __hitung_kata($str){
 //--karakter--
 function __data_karakter($str){
 	return str_split($str);
-	
+
 }
 function __karakter($str){
 	$karakter = array("karakter" => __data_karakter($str));
@@ -97,25 +97,25 @@ function __hitung_karakter($str){
 
 function itung($str){
 	$return = array();
-	
+
 	$kata = __kata($str);
 	$jumlah_kata = __jumlah_kata($str);
 	$hitung_kata = __hitung_kata($str);
-		
+
 	//karakter -------------
 	$karakter = __karakter($str);
 	$jumlah_karakter = __jumlah_karakter($str);
 	$hitung_karakter = __hitung_karakter($str);
-	
+
 	array_push($return,$jumlah_kata);
 	//~ array_push($return,$kata);
 	array_push($return,$hitung_kata);
 	array_push($return,$jumlah_karakter);
 	//~ array_push($return,$karakter);
 	array_push($return,$hitung_karakter);
-		
-	
-	
+
+
+
 	return $return;
 
 }

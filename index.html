@@ -8,7 +8,7 @@
 
 	<title>Itung</title>
 	<link href="static/bootstrap/css/bootstrap.css" rel="stylesheet">
-	
+
 	<script src="static/js/jquery-1.11.3.min.js"></script>
 	<script src="static/js/clipboard.min.js"></script>
 	<script src="static/js/notify.min.js"></script>
@@ -53,23 +53,46 @@
 			  document.execCommand("copy");
 			  temp.remove();
 			}
-			
+
 			masukan = $("#masukan");
-		
+
 			$("#itung").click(function(){
 					var str = $(masukan).val();
+					a = "";
 					$.get("itung.php?str="+str, function( data ) {
 						var jsonObj = JSON.parse(data);
-						var jsonPretty = JSON.stringify(jsonObj, null, '\t');		
+						var jsonPretty = JSON.stringify(jsonObj, null, '\t');
 						$(masukan).val(jsonPretty);
+						a=jsonPretty;
+
+						$.ajax({
+							type: "POST",
+							cache: false,
+							url: "upload.php",
+							data: {data:jsonPretty},
+							dataType:'text',
+							success: function(result){
+									console.log(result);
+									$('#hapus').after('<a id="unduh" href="'+result+'" class="btn btn-primary" download><i class="glyphicon glyphicon-download"></i> Unduh </a>');
+							},
+							error: function (request, status, error) {
+									console.log("error");
+							}
+						});
+
 					});
+
+
+
+
+
 			});
-		
+
 			$("#hapus").click(function(){
 					$(masukan).val("");
 					$(masukan).focus();
 			});
-			
+
 			var clipboard = new Clipboard('#salin');
 
 			clipboard.on('success', function(e) {
@@ -77,21 +100,20 @@
 			    //~ console.info('Text:', e.text);
 			    //~ console.info('Trigger:', e.trigger);
 			    $("#salin").notify(
-  "Coppied to clipboard", 
+  "Coppied to clipboard",
   { position:"right",
 		className:"success"}
 );
-			
+
 			    e.clearSelection();
 			});
-			
+
 			clipboard.on('error', function(e) {
 			    console.error('Action:', e.action);
 			    console.error('Trigger:', e.trigger);
 			});
-			
+
 		});
 	</script>
-	
 </body>
 </html>
