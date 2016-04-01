@@ -4,17 +4,17 @@
 	},
 	{
 		"hitung_kata": {
-			"arsars": 1
+			"arsarsas": 1
 		}
 	},
 	{
-		"jumlah_karakter": 6
+		"jumlah_karakter": 8
 	},
 	{
 		"hitung_karakter": {
-			"s": 2,
-			"r": 2,
-			"a": 2
+			"a": 3,
+			"s": 3,
+			"r": 2
 		}
 	}
 ]
