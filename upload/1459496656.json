@@ -1,0 +1,23 @@
+[
+	{
+		"jumlah_kata": 1
+	},
+	{
+		"hitung_kata": {
+			"upload": 1
+		}
+	},
+	{
+		"jumlah_karakter": 6
+	},
+	{
+		"hitung_karakter": {
+			"a": 1,
+			"d": 1,
+			"o": 1,
+			"l": 1,
+			"p": 1,
+			"u": 1
+		}
+	}
+]
